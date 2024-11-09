@@ -96,8 +96,10 @@ class Snake(GameObject):
         если новое направление не противоположно текущему.
         """
         if (self.next_direction
-                is None or (self.next_direction[0] != -direction[0]
-                 and self.next_direction[1] != -direction[1])):
+                is None or (
+                        self.next_direction[0] != -direction[0]
+                        and self.next_direction[1] != -direction[1])
+        ):
             self.next_direction = direction
 
     def move(self):
@@ -227,7 +229,7 @@ if __name__ == '__main__':
 #         last_rect = pygame.Rect(self.last, (GRID_SIZE, GRID_SIZE))
 #         pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
 
-#Функция обработки действий пользователя
+# Функция обработки действий пользователя
 # def handle_keys(game_object):
 #     for event in pygame.event.get():
 #         if event.type == pygame.QUIT:
