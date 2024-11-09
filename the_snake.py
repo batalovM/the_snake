@@ -95,10 +95,8 @@ class Snake(GameObject):
         """Обновляет направление движения змейки,
         если новое направление не противоположно текущему.
         """
-        if (self.next_direction
-                is None or (self.next_direction[0] != -direction[0] and
-                                           self.next_direction[1]
-                                           != -direction[1])):
+        if (not self.next_direction or self.next_direction !=
+                (-direction[0], -direction[1])):
             self.next_direction = direction
 
     def move(self):
