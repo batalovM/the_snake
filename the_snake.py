@@ -71,7 +71,8 @@ class Apple(GameObject):
     def draw(self):
         """Отрисовывает яблоко на экране (в данной версии просто выводит сообщение)."""
         pygame.draw.rect(screen, self.body_color,
-    (self.position[0], self.position[1], GRID_SIZE, GRID_SIZE))
+                         (self.position[0],
+                          self.position[1], GRID_SIZE, GRID_SIZE))
 
 
 class Snake(GameObject):
@@ -93,13 +94,15 @@ class Snake(GameObject):
         """Обновляет направление движения змейки,
         если новое направление не противоположно текущему.
         """
+
         if (self.next_direction is None or
-        (self.next_direction[0] != -direction[0]
-         and self.next_direction[1] != -direction[1])):
+        (self.next_direction[0] != -direction[0] and
+         self.next_direction[1] != -direction[1])):
             self.next_direction = direction
 
     def move(self):
         """Двигает змейку в текущем направлении и обновляет её позицию."""
+
         if self.next_direction:
             self.direction = self.next_direction
             self.next_direction = None
@@ -132,12 +135,14 @@ class Snake(GameObject):
 
     def get_head_position(self):
         """Возвращает текущую позицию головы змейки."""
+
         return self.positions[0]
 
     def reset(self):
         """Сбрасывает змейку в начальное
         состояние после столкновения с собой.
         """
+
         self.length = 1
         self.positions = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
         self.direction = RIGHT
