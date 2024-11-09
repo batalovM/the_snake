@@ -39,20 +39,24 @@ clock = pygame.time.Clock()
 # Тут опишите все классы игры.
 class GameObject(ABC):
     """Базовый класс для всех игровых объектов."""
+
     def __init__(self, position=None):
-        if position: self.position = position
+        if position:
+            self.position = position
         else:
-             (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+            (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.body_color = None
 
     @abstractmethod
     def draw(self):
         """Абстрактный метод для отрисовки объекта."""
+
         pass
 
 
 class Apple(GameObject):
     """Класс, представляющий яблоко в игре."""
+
     def __init__(self, position=None):
         """Инициализирует объект яблока с заданной позицией или случайной."""
         super().__init__(position)
@@ -72,9 +76,11 @@ class Apple(GameObject):
 
 class Snake(GameObject):
     """Класс, представляющий змейку в игре."""
+
     def __init__(self, position=None):
         """Инициализирует объект змейки с заданной позицией
-        или по умолчанию в центре экрана."""
+        или по умолчанию в центре экрана.
+        """
         super().__init__(position)
         self.body_color = SNAKE_COLOR  # Зеленый цвет змейки
         self.length = 1
@@ -85,7 +91,8 @@ class Snake(GameObject):
 
     def update_direction(self, direction):
         """Обновляет направление движения змейки,
-        если новое направление не противоположно текущему."""
+        если новое направление не противоположно текущему.
+        """
         if (self.next_direction is None or
         (self.next_direction[0] != -direction[0]
          and self.next_direction[1] != -direction[1])):
@@ -117,7 +124,8 @@ class Snake(GameObject):
 
     def draw(self):
         """Отрисовывает змейку на экране
-        (в данной версии просто выводит сообщение)."""
+        (в данной версии просто выводит сообщение).
+        """
         for position in self.positions:
             pygame.draw.rect(screen, self.body_color,
                              (position[0], position[1], GRID_SIZE, GRID_SIZE))
@@ -128,7 +136,8 @@ class Snake(GameObject):
 
     def reset(self):
         """Сбрасывает змейку в начальное
-        состояние после столкновения с собой."""
+        состояние после столкновения с собой.
+        """
         self.length = 1
         self.positions = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
         self.direction = RIGHT
